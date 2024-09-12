@@ -2,17 +2,7 @@ import React, { useState } from "react";
 import { FaEnvelope } from "react-icons/fa";
 
 function CustomForm({ status, message, onValidated }) {
-  const [email, setEmail] = useState("");
-
-  const resetForm = () => {
-    setEmail("");
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    email && email.indexOf("@") > -1 && onValidated({ EMAIL: email });
-    resetForm();
-  };
+  // State and handlers are removed as they are no longer needed
 
   return (
     <>
@@ -22,7 +12,6 @@ function CustomForm({ status, message, onValidated }) {
         id="mc-embedded-subscribe-form"
         name="mc-embedded-subscribe-form"
         className="py-6"
-        onSubmit={handleSubmit}
       >
         <input type="hidden" name="u" value="d9904c2c81e977ee73bf874f7" />
         <input type="hidden" name="id" value="e3c3beb5ce" />
@@ -33,11 +22,9 @@ function CustomForm({ status, message, onValidated }) {
           <input
             className="newsletter-input form-input h-12 w-full rounded-3xl border-none bg-theme-light px-5 py-3 pr-12 text-dark placeholder:text-xs dark:bg-darkmode-theme-dark"
             type="email"
-            name="EMAIL"  // Updated name attribute
-            id="mce-EMAIL"  // Updated id attribute
+            name="EMAIL"  // Ensure these match Mailchimp's requirements
+            id="mce-EMAIL"
             placeholder="Type your email and hit enter"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
           />
           <FaEnvelope className="absolute top-1/2 right-5 -translate-y-1/2 text-xl transition duration-75" />
         </fieldset>
@@ -46,18 +33,7 @@ function CustomForm({ status, message, onValidated }) {
         </button>
       </form>
 
-      {status === "sending" && (
-        <div className="mt-4 text-primary">sending...</div>
-      )}
-      {status === "error" && (
-        <div
-          className="mt-4 text-red-700"
-          dangerouslySetInnerHTML={{ __html: message }}
-        />
-      )}
-      {status === "success" && (
-        <div className="mt-4 text-green-700">Subscribed!</div>
-      )}
+      {/* Status and message display are also removed */}
     </>
   );
 }
