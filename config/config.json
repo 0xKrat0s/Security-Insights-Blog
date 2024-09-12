@@ -44,13 +44,14 @@
       "enable": true,
       "title": "Browse Topics"
     },
-    "newsletter": {
-      "enable": true,
-      "title": "Join Our Newsletter",
-      "content": "Subscribe to get the latest updates, exclusive content, and top tips on cybersecurity delivered to your inbox.",
-      "privacy_policy_page": "/privacy-policy",
-      "mailchimp_url": "http://eepurl.com/iYRdaI"
-    }
+"newsletter": {
+  "enable": true,
+  "title": "Join Our Newsletter",
+  "content": "Subscribe to get the latest updates, exclusive content, and top tips on cybersecurity delivered to your inbox.",
+  "privacy_policy_page": "/privacy-policy",
+  "mailchimp_url": "https://click.us14.list-manage.com/subscribe/post"
+}
+
   },
   "disqus": {
     "enable": true,
