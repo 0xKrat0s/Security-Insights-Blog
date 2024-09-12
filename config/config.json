@@ -48,8 +48,8 @@
       "enable": true,
       "title": "Join Our Newsletter",
       "content": "Subscribe to get the latest updates, exclusive content, and top tips on cybersecurity delivered to your inbox.",
-      "privacy_policy_page": "#",
-      "mailchimp_url": ""
+      "privacy_policy_page": "/privacy-policy",
+      "mailchimp_url": "http://eepurl.com/iYRdaI"
     }
   },
   "disqus": {
