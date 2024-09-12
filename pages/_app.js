@@ -1,21 +1,20 @@
-import config from "@config/config.json";
-import theme from "@config/theme.json";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import "styles/style.scss";
 import { JsonContext } from "context/state";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
-import { useEffect, useState } from "react";
 import TagManager from "react-gtm-module";
-import Script from "next/script";
-import "styles/style.scss";
+import config from "@config/config.json";
+import theme from "@config/theme.json";
 
 const App = ({ Component, pageProps }) => {
-  // default theme setup
+  const router = useRouter();
   const { default_theme } = config.settings;
-
-  // import google font css
   const pf = theme.fonts.font_family.primary;
   const sf = theme.fonts.font_family.secondary;
   const [fontcss, setFontcss] = useState();
+
   useEffect(() => {
     fetch(
       `https://fonts.googleapis.com/css2?family=${pf}${
@@ -24,23 +23,32 @@ const App = ({ Component, pageProps }) => {
     ).then((res) => res.text().then((css) => setFontcss(css)));
   }, [pf, sf]);
 
-  // google tag manager (gtm)
+  // Google Tag Manager
   const tagManagerArgs = {
-    gtmId: process.env.NEXT_PUBLIC_GTM_ID,
+    gtmId: config.params.tag_manager_id,
   };
   useEffect(() => {
     setTimeout(() => {
       process.env.NODE_ENV === "production" &&
-        process.env.NEXT_PUBLIC_GTM_ID &&
+        config.params.tag_manager_id &&
         TagManager.initialize(tagManagerArgs);
     }, 5000);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Google Analytics setup
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      window.gtag('config', 'G-H7FJGERNB4', { page_path: url });
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <JsonContext>
       <Head>
-        {/* Google font css */}
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
@@ -51,34 +59,24 @@ const App = ({ Component, pageProps }) => {
             __html: `${fontcss}`,
           }}
         />
-        {/* Responsive meta */}
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5"
         />
-        {/* Google Analytics */}
-        {process.env.NODE_ENV === "production" && (
-          <>
-            <Script
-              strategy="afterInteractive"
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-            />
-            <Script
-              id="google-analytics"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-                    page_path: window.location.pathname,
-                  });
-                `,
-              }}
-            />
-          </>
-        )}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=G-H7FJGERNB4`}
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-H7FJGERNB4');
+          `,
+          }}
+        />
       </Head>
       <ThemeProvider attribute="class" defaultTheme={default_theme}>
         <Component {...pageProps} />
