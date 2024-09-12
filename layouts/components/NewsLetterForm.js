@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaEnvelope } from "react-icons/fa";
 
-function Newsletter({ status, message, onValidated }) {
+function CustomForm({ status, message, onValidated }) {
   const [email, setEmail] = useState("");
 
   const resetForm = () => {
@@ -21,54 +21,29 @@ function Newsletter({ status, message, onValidated }) {
         method="post"
         id="mc-embedded-subscribe-form"
         name="mc-embedded-subscribe-form"
-        className="validate"
-        target="_blank"
+        className="py-6"
         onSubmit={handleSubmit}
       >
-        <div id="mc_embed_signup_scroll">
-          <h2>Subscribe</h2>
-          <div className="indicates-required">
-            <span className="asterisk">*</span> indicates required
-          </div>
-          <div className="mc-field-group">
-            <label htmlFor="mce-EMAIL">
-              Email Address <span className="asterisk">*</span>
-            </label>
-            <input
-              type="email"
-              name="EMAIL"
-              className="required email"
-              id="mce-EMAIL"
-              required=""
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div id="mce-responses" className="clear foot">
-            <div className="response" id="mce-error-response" style={{ display: "none" }}></div>
-            <div className="response" id="mce-success-response" style={{ display: "none" }}></div>
-          </div>
-          <div aria-hidden="true" style={{ position: "absolute", left: "-5000px" }}>
-            {/* real people should not fill this in and expect good things - do not remove this or risk form bot signups */}
-            <input
-              type="text"
-              name="b_d9904c2c81e977ee73bf874f7_e3c3beb5ce"
-              tabIndex="-1"
-              value=""
-            />
-          </div>
-          <div className="optionalParent">
-            <div className="clear foot">
-              <input
-                type="submit"
-                name="subscribe"
-                id="mc-embedded-subscribe"
-                className="button"
-                value="Subscribe"
-              />
-            </div>
-          </div>
-        </div>
+        <input type="hidden" name="u" value="d9904c2c81e977ee73bf874f7" />
+        <input type="hidden" name="id" value="e3c3beb5ce" />
+        <input type="hidden" name="ht" value="97e7f7c64f4ea5f559b27b7c523dc58773a40117" />
+        <input type="hidden" name="mc_signupsource" value="hosted" />
+
+        <fieldset className="relative">
+          <input
+            className="newsletter-input form-input h-12 w-full rounded-3xl border-none bg-theme-light px-5 py-3 pr-12 text-dark placeholder:text-xs dark:bg-darkmode-theme-dark"
+            type="email"
+            name="EMAIL"  // Updated name attribute
+            id="mce-EMAIL"  // Updated id attribute
+            placeholder="Type your email and hit enter"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <FaEnvelope className="absolute top-1/2 right-5 -translate-y-1/2 text-xl transition duration-75" />
+        </fieldset>
+        <button className="d-block btn btn-primary mt-4 w-full" type="submit">
+          Subscribe
+        </button>
       </form>
 
       {status === "sending" && (
@@ -87,4 +62,4 @@ function Newsletter({ status, message, onValidated }) {
   );
 }
 
-export default Newsletter;
+export default CustomForm;
