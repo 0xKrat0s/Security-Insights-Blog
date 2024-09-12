@@ -1,0 +1,60 @@
+{
+  "site": {
+    "title": "Security Insights",
+    "base_url": "/",
+    "favicon": "/images/favicon.ico",
+    "logo": "/images/logo-light.svg",
+    "logo_white": "/images/logo-light.svg",
+    "logo_width": "250",
+    "logo_height": "55",
+    "logo_text": "Security Insights"
+  },
+  "settings": {
+    "theme_switcher": true,
+    "default_theme": "system",
+    "pagination": 6,
+    "InnerPaginationOptions": {
+      "enableTop": false,
+      "enableBottom": true
+    },
+    "summary_length": 200,
+    "blog_folder": "posts"
+  },
+  "params": {
+    "tag_manager_id": "",
+    "footer_content": "Your go-to place for clear and practical cybersecurity insights. Stay updated with the latest news and trends.",
+    "copyright": "© Respected Owner."
+  },
+  "metadata": {
+    "meta_author": "Amal",
+    "meta_image": "/images/og-image.png",
+    "meta_description": "Your source for straightforward cybersecurity insights and tech news."
+  },
+  "widgets": {
+    "about": {
+      "enable": true,
+      "content": "Get expert analysis and easy-to-understand insights into the world of cybersecurity. Explore the latest threats and technologies with us."
+    },
+    "featured_posts": {
+      "enable": true,
+      "title": "Top Posts",
+      "showPost": 3
+    },
+    "categories": {
+      "enable": true,
+      "title": "Browse Topics"
+    },
+    "newsletter": {
+      "enable": true,
+      "title": "Join Our Newsletter",
+      "content": "Subscribe to get the latest updates, exclusive content, and top tips on cybersecurity delivered to your inbox.",
+      "privacy_policy_page": "#",
+      "mailchimp_url": ""
+    }
+  },
+  "disqus": {
+    "enable": true,
+    "shortname": "security-insights",
+    "settings": {}
+  }
+}
