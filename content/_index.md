@@ -1,8 +1,8 @@
 ---
 banner:
   title: Welcome **!**
-  title_small: "to Security Insights"
-  content: Passionate about cybersecurity and tech? Dive into practical insights, analysis, and the latest trends.
+  title_small: "to Security Insights "
+  content: Passionate about cybersecurity and tech? Dive into practical insights, analysis, and the latest trends. <br> <br> <Code language="javascript"> **Security Insights~$** Explore, Analyze, and Evolve </Code>
   image_enable: true
   image: /images/banner-author.svg
   button:

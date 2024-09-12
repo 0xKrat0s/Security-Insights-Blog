@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <footer className="section relative mt-12 pt-[70px] pb-[50px]">
       <ImageFallback
-        className="-z-[1] object-cover object-left  md:object-top"
+        className="-z-[1] object-cover object-left md:object-top"
         src="/images/footer-bg-shape.svg"
         alt="footer background"
         fill={true}
@@ -39,6 +39,10 @@ const Footer = () => {
         {/* social icons */}
         <div className="inline-flex">
           <Social source={social} className="socials mb-12 justify-center" />
+        </div>
+        {/* New line above copyright */}
+        <div className="mb-4 text-lg font-bold text-dark dark:text-darkmode-light">
+          Security Insights~$ Explore, Analyze, and Evolve
         </div>
         {/* copyright */}
         {markdownify(copyright, "p")}
